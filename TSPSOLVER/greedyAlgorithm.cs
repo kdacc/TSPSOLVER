@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TSPSOLVER
 {
-    class GreedyTSP
+    public static class GreedyTSP
     {
         public static (int[], double) GreedyAlgorithm(double[,] distanceMatrix)
         {

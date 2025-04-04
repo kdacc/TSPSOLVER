@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TSPSOLVER
 {
-    class simulatedAnnealing
+    public static class simulatedAnnealing
     {
     }
 }
