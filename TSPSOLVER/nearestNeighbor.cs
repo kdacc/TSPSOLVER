@@ -8,42 +8,63 @@ namespace TSPSOLVER
 {
     public static class NearestNeighbor
     {
-        public static (int[], double) NearestNeighborTSP(double[,] distanceMatrix)
+        public static (int[], double, int iterations) NearestNeighborTSP(double[,] distanceMatrix)
         {
             int numOfCities = distanceMatrix.GetLength(0);
-            bool[] visited = new bool[numOfCities];
-            int[] route = new int[numOfCities + 1];
-            double totalDistance = 0;
+            int iterations = 0;
 
-            int visitedCities = 1;
-            route[0] = 0;
-            visited[0] = true;
-
-            do
+            if (numOfCities == 0)
             {
+                return (new int[0], 0.0, 0);
+            }
+            if (numOfCities == 1)
+            {
+                return (new int[] { 0, 0 }, 0.0, 0); 
+            }
+
+            bool[] visited = new bool[numOfCities];
+            int[] route = new int[numOfCities + 1]; 
+            double totalDistance = 0.0;
+
+            int currentCityIndexInRoute = 0; 
+            route[currentCityIndexInRoute] = 0; 
+            visited[0] = true;
+            int citiesVisitedCount = 1; 
+            int lastAddedCity = 0; 
+
+            while (citiesVisitedCount < numOfCities)
+            {
+                iterations++;
                 double minDistance = double.MaxValue;
                 int nearestCity = -1;
 
                 for (int j = 0; j < numOfCities; j++)
                 {
-                    if (!visited[j] && distanceMatrix[route[visitedCities - 1], j] < minDistance)
+                    if (!visited[j] && distanceMatrix[lastAddedCity, j] < minDistance)
                     {
-                        minDistance = distanceMatrix[route[visitedCities - 1], j];
+                        minDistance = distanceMatrix[lastAddedCity, j];
                         nearestCity = j;
                     }
                 }
 
-                visitedCities++;
-                route[visitedCities - 1] = nearestCity;
+                if (nearestCity == -1)
+                {
+                    Console.WriteLine("Помилка: Не вдалося знайти наступне невідвідане місто.");
+                    for (int k = citiesVisitedCount; k < numOfCities; k++) route[k + 1] = -1; // +1 бо route[0] вже є
+                    route[numOfCities] = route[0]; 
+                    return (route, double.NaN, iterations);
+                }
+
+                currentCityIndexInRoute++;
+                route[currentCityIndexInRoute] = nearestCity;
                 totalDistance += minDistance;
                 visited[nearestCity] = true;
-
-            } while (visitedCities < numOfCities);
-
-            totalDistance += distanceMatrix[route[numOfCities - 1], route[0]];
-            route[numOfCities] = route[0];
-
-            return (route, totalDistance);
+                lastAddedCity = nearestCity;
+                citiesVisitedCount++;
+            }
+            totalDistance += distanceMatrix[lastAddedCity, route[0]];
+            route[numOfCities] = route[0]; 
+            return (route, totalDistance, iterations);
         }
     }
 }

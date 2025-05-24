@@ -26,13 +26,15 @@
         <Border CornerRadius="5"
                 BorderThickness="4" BorderBrush="#E2E0FF"
                 Background="White" Grid.Row="1" Grid.Column="0" Margin="20,10,10,20" HorizontalAlignment="Center">
-            <TextBox x:Name="txtCityCount" Width="230" Height="50"
-                     BorderThickness="0"
-                     Text="Enter number of cities" Foreground="#D9D9D9" FontSize="20"
-                     FontFamily="Microsoft YaHei"
-                     Background="Transparent" Padding="7"
-                     GotFocus="txtCityCount_GotFocus" />
+            <TextBox x:Name="txtCityCount" Width="295" Height="50"
+                BorderThickness="0"
+                Text="Enter number of cities [2; 15]" Foreground="#D9D9D9" FontSize="20"
+                FontFamily="Microsoft YaHei"
+                Background="Transparent" Padding="7"
+                GotFocus="txtCityCount_GotFocus"
+                LostFocus="txtCityCount_LostFocus" />
         </Border>
+
 
         <Border CornerRadius="5"
                 BorderThickness="2" Background="#F2BE54"
@@ -141,14 +143,14 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Margin="0,350,0,0" FontFamily="Microsoft YaHei" Grid.Row="2" Grid.Column="2"/>
 
-        <Border BorderBrush="#E2E0FF" BorderThickness="5" Width="750" Height="100"
-                Grid.Row="2" Grid.Column="2" Margin="0,0,0,120" VerticalAlignment="Bottom">
-            <Canvas x:Name="canvasResults" Width="750" Height="150" />
+        <Border BorderBrush="#E2E0FF" BorderThickness="5" Width="750" Height="126"
+                Grid.Row="2" Grid.Column="2" Margin="110,645,110,0" VerticalAlignment="Top">
+            <Canvas x:Name="canvasResults" Width="750" Margin="0,-5,-10,0" />
         </Border>
 
         <Border CornerRadius="5"
                 BorderThickness="2" Background="#BF0000"
-                Width="130" Height="50" Grid.Row="2" Grid.Column="2" Margin="0,750,200,0">
+                Width="130" Height="50" Grid.Row="2" Grid.Column="2" Margin="0,770,200,0">
             <Button x:Name="btnDelete" Content="Delete" FontWeight="Bold"
                     Foreground="White"
                     FontFamily="Microsoft YaHei" FontSize="20"
@@ -158,7 +160,7 @@
 
         <Border CornerRadius="5"
                 BorderThickness="2" Background="#3CA52B"
-                Width="130" Height="50" Grid.Row="2" Grid.Column="2" Margin="200,750,0,0">
+                Width="130" Height="50" Grid.Row="2" Grid.Column="2" Margin="200,770,0,0">
             <Button x:Name="btnSave" Content="Save" FontWeight="Bold"
                     Foreground="White"
                     FontFamily="Microsoft YaHei" FontSize="20"
