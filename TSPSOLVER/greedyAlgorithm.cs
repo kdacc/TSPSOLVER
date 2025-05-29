@@ -17,8 +17,6 @@ namespace TSPSOLVER
                 if (numOfCities == 2) return (new int[] { 0, 1, 0 }, distanceMatrix[0, 1] + distanceMatrix[1, 0], 0);
             }
 
-            // Класичний жадібний підхід
-            // Створюємо список всіх можливих ребер
             List<(int from, int to, double distance)> edges = new List<(int, int, double)>();
             for (int i = 0; i < numOfCities; i++)
             {
@@ -28,10 +26,8 @@ namespace TSPSOLVER
                 }
             }
 
-            // Сортуємо ребра за зростанням відстані
             edges.Sort((e1, e2) => e1.distance.CompareTo(e2.distance));
 
-            // Створюємо граф для зберігання доданих ребер
             Dictionary<int, List<int>> graph = new Dictionary<int, List<int>>();
             for (int i = 0; i < numOfCities; i++)
             {
@@ -41,7 +37,6 @@ namespace TSPSOLVER
             double totalDistance = 0.0;
             int edgesAdded = 0;
 
-            // Додаємо ребра у порядку зростання ваги
             foreach (var edge in edges)
             {
                 iterations++;
@@ -56,7 +51,6 @@ namespace TSPSOLVER
                     continue;
 
                 // 2. Додання ребра не повинно створювати цикл, якщо ми ще не додали всі міста
-                // Виняток: останнє ребро, яке замикає цикл
                 if (graph[u].Count > 0 && graph[v].Count > 0)
                 {
                     // Перевіряємо, чи не створить це ребро передчасний цикл
@@ -64,17 +58,14 @@ namespace TSPSOLVER
                         continue;
                 }
 
-                // Додаємо ребро до графа
                 graph[u].Add(v);
                 graph[v].Add(u);
                 totalDistance += edge.distance;
                 edgesAdded++;
             }
 
-            // Останнє ребро, яке замикає цикл, якщо необхідно
             if (edgesAdded < numOfCities)
             {
-                // Знаходимо дві вершини з одним ребром
                 List<int> endVertices = new List<int>();
                 for (int i = 0; i < numOfCities; i++)
                 {
@@ -92,11 +83,10 @@ namespace TSPSOLVER
                 }
             }
 
-            // Будуємо шлях з графа
             int[] route = new int[numOfCities + 1];
             bool[] visited = new bool[numOfCities];
 
-            int currentCity = 0; // Починаємо з міста 0
+            int currentCity = 0; 
             route[0] = currentCity;
             visited[currentCity] = true;
 
@@ -114,7 +104,7 @@ namespace TSPSOLVER
                 }
             }
 
-            route[numOfCities] = route[0]; // Повертаємось до початкового міста
+            route[numOfCities] = route[0]; 
 
             totalDistance = 0;
             for (int i = 0; i < numOfCities; i++)
@@ -125,7 +115,6 @@ namespace TSPSOLVER
             return (route, totalDistance, iterations);
         }
 
-        // Функція для перевірки, чи створить додавання ребра (u, v) передчасний цикл
         private static bool WillFormPrematureCycle(Dictionary<int, List<int>> graph, int u, int v, int numOfCities, int edgesAdded)
         {
             // Якщо це останнє ребро, то цикл дозволений

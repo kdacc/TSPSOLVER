@@ -115,7 +115,7 @@ namespace TSPSOLVER
                     (newPath[pos1], newPath[pos2]) = (newPath[pos2], newPath[pos1]);
                     break;
 
-                case 1: // 2-opt (Reverse segment)
+                case 1: //Reverse segment
                     if (numOfCities < 3) break;
                     int idx1 = random.Next(numOfCities);
                     int idx2 = random.Next(numOfCities);

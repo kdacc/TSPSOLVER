@@ -18,7 +18,7 @@ namespace TSPSOLVER
         const double MIN_VALID_DISTANCE = 1e-2;
         const double MAX_VALID_DISTANCE = 1e2;
 
-        public int NumberOfCities => Cities?.Count ?? 0;
+        public int NumberOfCities => Cities?.Count ?? 0; //перевірка на null 
 
         public TSPProblemData()
         {
@@ -224,7 +224,7 @@ namespace TSPSOLVER
                 Name = labelName, 
                 Text = weightText,
                 Foreground = Brushes.DarkSlateGray,
-                Background = Brushes.LightYellow, 
+                Background = Brushes.LightYellow,
                 Padding = new Thickness(2),
                 FontSize = 10,
                 FontWeight = FontWeights.Normal
@@ -234,6 +234,7 @@ namespace TSPSOLVER
             weightLabel.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity)); 
             Canvas.SetLeft(weightLabel, midpoint.X - weightLabel.ActualWidth / 2);
             Canvas.SetTop(weightLabel, midpoint.Y - weightLabel.ActualHeight / 2);
+            Canvas.SetZIndex(weightLabel, 2); 
             Canvas.SetZIndex(weightLabel, 2); 
         }
     }

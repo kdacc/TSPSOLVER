@@ -40,7 +40,7 @@ namespace TSPSOLVER
             };
             Canvas.SetLeft(LabelVisual, Position.X + Radius - 5);
             Canvas.SetTop(LabelVisual, Position.Y + Radius - 10);
-            Canvas.SetZIndex(LabelVisual, 1);
+            Canvas.SetZIndex(LabelVisual, 100);
         }
 
         public void AddToCanvas(Canvas canvas)
