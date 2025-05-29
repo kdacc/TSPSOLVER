@@ -104,8 +104,9 @@ namespace TSPSOLVER
 
             switch (method)
             {
-                case 0: // Swap
-                    if (numOfCities < 2) break;
+                case 0:
+                    if (numOfCities < 2) 
+                        break;
                     int pos1 = random.Next(numOfCities);
                     int pos2 = random.Next(numOfCities);
                     while (pos1 == pos2)
@@ -115,8 +116,9 @@ namespace TSPSOLVER
                     (newPath[pos1], newPath[pos2]) = (newPath[pos2], newPath[pos1]);
                     break;
 
-                case 1: //Reverse segment
-                    if (numOfCities < 3) break;
+                case 1: 
+                    if (numOfCities < 3)
+                        break;
                     int idx1 = random.Next(numOfCities);
                     int idx2 = random.Next(numOfCities);
                     while (idx1 == idx2 || Math.Abs(idx1 - idx2) < 1 && numOfCities > 2)
