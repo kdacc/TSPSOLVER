@@ -18,7 +18,7 @@ namespace TSPSOLVER
         const double MIN_VALID_DISTANCE = 1e-2;
         const double MAX_VALID_DISTANCE = 1e2;
 
-        public int NumberOfCities => Cities != null ? Cities.Count : 0;        //перевірка на null 
+        public int NumberOfCities => Cities != null ? Cities.Count : 0;  //перевірка на null 
 
         public TSPProblemData()
         {
@@ -156,6 +156,12 @@ namespace TSPSOLVER
                 if (string.IsNullOrWhiteSpace(weightTextBox.Text))
                 {
                     errorMessage = $"Будь ласка, введіть вагу для ребра між містами {cityIndex1 + 1} та {cityIndex2 + 1}.";
+                    return false;
+                }
+
+                if (weightTextBox.Text.Length > 15)
+                {
+                    errorMessage = $"Вага для ребра між містом {cityIndex1 + 1} та містом {cityIndex2 + 1} не може перевищувати 15 символів.";
                     return false;
                 }
 
