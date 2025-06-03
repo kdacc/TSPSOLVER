@@ -26,7 +26,7 @@ namespace TSPSOLVER
             {
                 Width = Diameter,
                 Height = Diameter,
-                Fill = isStartCity ? Brushes.Green : Brushes.Blue
+                Fill = isStartCity ? Brushes.Green : Brushes.Blue,
             };
             Canvas.SetLeft(CircleVisual, Position.X);
             Canvas.SetTop(CircleVisual, Position.Y);

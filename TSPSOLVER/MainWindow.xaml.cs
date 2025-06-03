@@ -15,7 +15,7 @@ namespace TSPSOLVER
         private const string DEFAULT_CITY_COUNT_TEXT = "Enter number of cities [2; 15]";
         private const int MIN_CITIES = 2;
         private const int MAX_CITIES = 15;
-        private const int MIN_EDGE_WEIGHT = 1;
+        private const int MIN_EDGE_WEIGHT = 1; 
         private const int MAX_EDGE_WEIGHT = 100;
 
         private TSPProblemData _problemData;
@@ -91,7 +91,7 @@ namespace TSPSOLVER
             Random random = new Random();
             foreach (var edgeData in _problemData.EdgeWeightControls)
             {
-                 int weight = random.Next(MIN_EDGE_WEIGHT, MAX_EDGE_WEIGHT + 1);
+                 int weight = random.Next(MIN_EDGE_WEIGHT, MAX_EDGE_WEIGHT + 1);  
                 edgeData.Item3.Text = weight.ToString();
                 _problemData.UpdateEdgeWeightLabelOnCanvas(canvasGraph, edgeData.Item1, edgeData.Item2, weight.ToString());
             }
@@ -144,8 +144,7 @@ namespace TSPSOLVER
                 MessageBox.Show("Будь ласка, спочатку підтвердіть ваги ребер (кнопка 'Підтвердити ваги').", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
-            _currentSolution = _selectedSolver.Solve(_problemData.WeightsMatrix);
+                _currentSolution = _selectedSolver.Solve(_problemData.WeightsMatrix);
 
             DisplayResults(_currentSolution);
             VisualizeSolutionPath(_currentSolution.Path);
@@ -258,7 +257,6 @@ namespace TSPSOLVER
                 MessageBox.Show("Неможливо визначити використаний алгоритм.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {
