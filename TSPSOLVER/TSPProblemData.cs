@@ -18,8 +18,7 @@ namespace TSPSOLVER
         const double MIN_VALID_DISTANCE = 1e-2;
         const double MAX_VALID_DISTANCE = 1e2;
 
-        public int NumberOfCities => Cities != null ? Cities.Count : 0;  //перевірка на null 
-
+        public int NumberOfCities => Cities != null ? Cities.Count : 0;  
         public TSPProblemData()
         {
             Cities = new List<City>();

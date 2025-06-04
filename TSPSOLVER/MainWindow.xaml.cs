@@ -69,7 +69,6 @@ namespace TSPSOLVER
                 canvasResults.Children.Clear(); 
                 ClearSolutionPathVisuals();
 
-
                 _problemData.GenerateCities(numberOfCities, canvasGraph, canvasGraph.ActualWidth, canvasGraph.ActualHeight);
                 _problemData.GenerateEdgeControls(canvasGraph, EdgeWeightsList);
                 _currentSolution = null; 
@@ -275,6 +274,7 @@ namespace TSPSOLVER
                         writer.WriteLine($"Number of cities: {_problemData.NumberOfCities}");
                         writer.WriteLine("Path: " + string.Join(" -> ", _currentSolution.Path.Select(i => (i + 1).ToString())));
                         writer.WriteLine($"Total distance: {_currentSolution.TotalDistance:F2}");
+                        writer.WriteLine($"Iterations: {_currentSolution.Iterations}");
                         writer.WriteLine("\nWeights Matrix:");
                         for (int i = 0; i < _problemData.NumberOfCities; i++)
                         {
